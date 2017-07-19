@@ -17,7 +17,7 @@ $this->title = 'My Yii Application';
     <div class="body-content">
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-4" style="background-color: #00aa00;">
                 <h2>Heading</h2>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
