@@ -54,6 +54,7 @@ class ParserdomriaController extends \yii\console\Controller
     public function actionRun()
     {
         $dont_know='Не определено';
+        $arr_info['idlist']=[];
 
 //        limit	'20'
 //page	'5'
