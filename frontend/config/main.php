@@ -101,12 +101,12 @@ return [
             'errorAction' => 'site/error',
         ],
 
-//        'urlManager' => [
-//            'enablePrettyUrl' => true,
-//            'showScriptName' => false,
-//            'rules' => [
-//            ],
-//        ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+            ],
+        ],
 
 
         'urlManager' => [
@@ -132,7 +132,9 @@ return [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+                 //   '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+                      '@app/views' => '@app/views/customizeadminlte/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+// /home/sam/sites/l18yii/frontend/views/customizeadminlte
                 ],
             ],
         ]

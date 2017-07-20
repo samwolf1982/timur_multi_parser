@@ -42,50 +42,45 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="col-xs-2">
            
          <?php
-echo SideNav::widget([
-    'type' => SideNav::TYPE_DEFAULT,
-    'heading' => 'Меню',
-    'items' => [
-        // [
-        //     'url' => '#',
-        //     'label' => 'Home',
-        //     'icon' => 'home'
-        // ],
-        [
-            'label' => 'К меню',
-            'icon' => 'question-sign',
-            'items' => [
-                ['label' => 'Новые за сегодня', 'icon'=>'info-sign', 'url'=>Url::toRoute('roomstoday/index')],
-                   ['label' => 'Мои сохраненные', 'icon'=>'info-sign', 'url'=>Url::toRoute('ownsave/index')],
-                      ['label' => 'Наши сохраненные', 'icon'=>'info-sign', 'url'=>Url::toRoute('ownsave/oursave')],
-                         ['label' => 'Мои добавленные', 'icon'=>'info-sign', 'url'=>Url::toRoute('ownsave/ownadd')],
-                         ['label' => 'Наши добавленные', 'icon'=>'info-sign', 'url'=>Url::toRoute('ownsave/ouradd')],
-                            ['label' => 'Первоисточник', 'icon'=>'info-sign', 'url'=>'#'],
-               
-            ],
-        ],
-    ],
-]);
+//echo SideNav::widget([
+//    'type' => SideNav::TYPE_DEFAULT,
+//    'heading' => 'Меню',
+//    'items' => [
+//        [
+//            'label' => 'К меню',
+//            'icon' => 'question-sign',
+//            'items' => [
+//                ['label' => 'Новые за сегодня', 'icon'=>'info-sign', 'url'=>Url::toRoute('roomstoday/index')],
+//                   ['label' => 'Мои сохраненные', 'icon'=>'info-sign', 'url'=>Url::toRoute('ownsave/index')],
+//                      ['label' => 'Наши сохраненные', 'icon'=>'info-sign', 'url'=>Url::toRoute('ownsave/oursave')],
+//                         ['label' => 'Мои добавленные', 'icon'=>'info-sign', 'url'=>Url::toRoute('ownsave/ownadd')],
+//                         ['label' => 'Наши добавленные', 'icon'=>'info-sign', 'url'=>Url::toRoute('ownsave/ouradd')],
+//                            ['label' => 'Первоисточник', 'icon'=>'info-sign', 'url'=>'#'],
+//
+//            ],
+//        ],
+//    ],
+//]);
 ?>
 
      </div>
        <div class="col-xs-2">
            <div>
-       <form class="form-horizontal">
-
-  <div class="form-group">
-   
-    <div class="col-sm-10 pull-right"> 
-      <input type="text" class="form-control " id="searchfiled" placeholder="Поиск...">
-    </div>
-  </div>
-
-  <div class="form-group"> 
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default pull-right">Найти</button>
-    </div>
-  </div>
-</form>
+<!--       <form class="form-horizontal">-->
+<!---->
+<!--  <div class="form-group">-->
+<!--   -->
+<!--    <div class="col-sm-10 pull-right"> -->
+<!--      <input type="text" class="form-control " id="searchfiled" placeholder="Поиск...">-->
+<!--    </div>-->
+<!--  </div>-->
+<!---->
+<!--  <div class="form-group"> -->
+<!--    <div class="col-sm-offset-2 col-sm-10">-->
+<!--      <button type="submit" class="btn btn-default pull-right">Найти</button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</form>-->
 
      </div>
 
@@ -118,7 +113,7 @@ echo SideNav::widget([
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-     <?= Html::a('Сбросить кеш', ['flush'], ['class' => 'btn btn-success ']) ?>
+     <?php // Html::a('Сбросить кеш', ['flush'], ['class' => 'btn btn-success ']) ?>
         <?= Html::a('Create Rooms', ['roomstoday/create'], ['class' => 'btn btn-success  pull-left']) ?>
     
     
