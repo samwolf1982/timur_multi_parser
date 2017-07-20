@@ -52,7 +52,7 @@
 
 
                     [
-                        'label' => 'Администрирование',
+                        'label' => 'Администрирование',  'visible' => Yii::$app->user->can('administrator'),
                         'icon' => 'share',
                         'url' => '#',
                         'items' => [
