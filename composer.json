@@ -18,10 +18,10 @@
         "yiisoft/yii2": "~2.0.6",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
-        "budyaga/yii2-users": "*",
         "kartik-v/yii2-widgets": "*",
         "kartik-v/yii2-grid": "@dev",
-        "dmstr/yii2-adminlte-asset": "2.*"
+        "dmstr/yii2-adminlte-asset": "2.*",
+        "budyaga/yii2-users": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

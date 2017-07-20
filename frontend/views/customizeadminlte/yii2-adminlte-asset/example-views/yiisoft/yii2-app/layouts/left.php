@@ -49,7 +49,7 @@
 
 
 
-                    ['label' => 'PasswordReset', 'url' => ['/requestPasswordReset'], 'visible' => !Yii::$app->user->isGuest],
+
 
                     [
                         'label' => 'Администрирование',
@@ -58,6 +58,7 @@
                         'items' => [
                             ['label' => 'Управление пользователями', 'icon' => 'file-code-o', 'url' => ['/user/admin'],],
                             ['label' => 'RBAC', 'icon' => 'file-code-o', 'url' => ['/user/rbac'],],
+                            ['label' => 'PasswordReset', 'url' => ['/requestPasswordReset'], 'visible' => !Yii::$app->user->isGuest],
 
                             ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
                             ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
