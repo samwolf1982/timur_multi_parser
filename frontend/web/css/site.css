@@ -127,3 +127,11 @@ a.desc:after {
     width: 56%;
 }
 
+
+input[name^="RoomsSearch[description]"],  input[name^="RoomstodaySearch[description]"] , input[name^="OwnsaveSearch[description]"]{
+
+    background-color: yellow!important;
+    width: 250px!important;
+    max-width: 250px!important;
+}
+

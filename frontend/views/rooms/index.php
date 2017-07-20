@@ -487,6 +487,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'attribute'=>'description',
                                 'class' => 'kartik\grid\DataColumn',
                                 'noWrap' => true,
+                                'headerOptions' => ['class' => 'descriptionfield'],
 
                                 'contentOptions' =>
                                     ['style'=>'max-width: 300px;     max-height: 120px;  width: 200px;
@@ -503,7 +504,7 @@ $this->params['breadcrumbs'][] = $this->title;
  
  white-space: pre;
  overflow: -moz-hidden-unscrollable;
-  '
+  ', 'class'=>"descriptionfield",
                                     ]
                                 ,
 
