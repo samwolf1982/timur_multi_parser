@@ -118,3 +118,12 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.grid-view .filters input, .grid-view .filters select{
+    max-width: 65px;
+}
+.panel-success {
+    border-color: #d6e9c6;
+    width: 56%;
+}
+
