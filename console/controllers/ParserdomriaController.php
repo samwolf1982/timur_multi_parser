@@ -54,7 +54,8 @@ class ParserdomriaController extends \yii\console\Controller
     public function actionRun()
     {
         $dont_know='Не определено';
-        $arr_info['idlist']=[];
+//        $arr_info['idlist']=[];
+
 
 //        limit	'20'
 //page	'5'
@@ -314,6 +315,11 @@ class ParserdomriaController extends \yii\console\Controller
 
            // \Yii::info("own: ", $arr_info);
             //yii::error(var_dump(['dfdsafdsa']));
+
+            if (!isset( $arr_info['idlist'])){
+                $arr_info['idlist']=[];
+            }
+
             echo json_encode([ 'colected2' => $total_in_page,'stop_timer' => false,'idlist'=> $arr_info['idlist'],
                 //'catch'=> $catch, 'present'=>$present,
             ], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
