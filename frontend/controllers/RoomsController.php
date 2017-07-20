@@ -10,26 +10,118 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 
 /**
  * RoomsController implements the CRUD actions for Rooms model.
  */
 class RoomsController extends Controller
 {
-    
+
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
+            // 'verbs' => [
+            //     'class' => VerbFilter::className(),
+            //     'actions' => [
+            //         'delete' => ['POST'],
+            //     ],
+            // ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['index', 'create', 'view', 'update', 'delete', 'permissions'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['create','update','delete','view','index'],
+                        'roles' => ['administrator'],
+                    ],
+
+
+
+                    [
+                        'allow' => true,
+                        'actions' => ['create','update','view','index'],
+                        'roles' => ['moderator'],
+
+
+//                           'matchCallback' => function ($rule, $action) {
+//     if (!empty(Yii::$app->session['user_id']) || !empty(Yii::$app->user->identity)) {
+//  $u_id=empty(Yii::$app->session['user_id'])?false:Yii::$app->session['user_id'];
+//   $u_id=empty(Yii::$app->user->identity)?$u_id:Yii::$app->user->identity->id;
+// $order = Order::find()->where(['id' => Yii::$app->request->get('id'),'id_customer'=> $u_id])->one();
+//                                  return  !empty($order);
+//                               }
+//                               return false;
+
+
+//                         }
+                    ],
+
+                    // [
+                    //                   'allow' => true,
+                    //                   'actions' => ['index',],
+                    //                   // 'roles' => ['?','customer'],
+                    //                     'matchCallback' => function ($rule, $action) {
+                    //                         if (!empty(Yii::$app->session['user_id'])) {
+                    //                           return 1;
+                    //                         }
+                    //                           if (!empty(Yii::$app->user->identity)) {
+                    //                                     if (!Yii::$app->user->can('courier')) {
+                    //                                         return 1;
+                    //                                     }
+
+
+
+                    //                         }
+                    //                         return false;
+
+                    //                   }
+                    //               ],
+
+                    // [
+                    //     'allow' => true,
+                    //     'actions' => ['create'],
+                    //     'roles' => ['userCreate'],
+                    // ],
+                    // [
+                    //     'allow' => true,
+                    //     'actions' => ['view'],
+                    //      'roles' => ['userView'],
+                    // ],
+                    // [
+                    //     'allow' => true,
+                    //     'actions' => ['update'],
+                    //     'matchCallback' => function ($rule, $action) {
+                    //         return Yii::$app->user->can('userUpdate', ['user' => $this->findModel(Yii::$app->request->get('id'))]);
+                    //     }
+                    // ],
+                    // [
+                    //     'allow' => true,
+                    //     'actions' => ['delete'],
+                    //     'roles' => ['userDelete'],
+                    // ],
+                    // [
+                    //     'allow' => true,
+                    //     'actions' => ['permissions'],
+                    //     'roles' => ['userPermissions'],
+                    // ],
                 ],
             ],
+
+
         ];
+        // return [
+        //     'verbs' => [
+        //         'class' => VerbFilter::className(),
+        //         'actions' => [
+        //             'delete' => ['POST'],
+        //         ],
+        //     ],
+        // ];
     }
 
 
