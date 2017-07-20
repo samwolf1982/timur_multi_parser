@@ -189,63 +189,49 @@ echo SideNav::widget([
                             ['class' => 'yii\grid\ActionColumn' ,'template' => '{view} {update}']
                             ,
 
-                            [
-                                'attribute'=>'site_id',
-                                'class' => 'kartik\grid\DataColumn',
-                                'noWrap' => false,
-                                'contentOptions' =>
-                                    ['style'=>'max-width: 50px;     max-height: 120px; width:50px; overflow: auto; white-space: pre-wrap; /* css-3 */
- white-space: -moz-pre-wrap;
- white-space: -pre-wrap; 
- white-space: -o-pre-wrap; 
- word-wrap: break-word; ']
-                                ,
-                            ],
+
 
 
                             [
-                                'attribute'=> 'date',
-                                'class' => 'kartik\grid\DataColumn',
-                                'noWrap' => false,
-
-                                'value'=>function ($model, $key, $index, $widget) {
-                                    //return  str_replace(' ', PHP_EOL, $model->date);
-                                    return $model->date;
-                                },
-
-                                'contentOptions' =>
-                                    ['style'=>'max-width: 350px;     max-height: 120px; overflow: auto; white-space: pre-wrap; /* css-3 */
- white-space: -moz-pre-wrap; 
- white-space: -pre-wrap; 
- white-space: -o-pre-wrap; 
- word-wrap: break-word; ']
-                                ,
-
-
-                            ],
-
-
-                            [
-                                'attribute'=>'count_rooms',
+                                'attribute'=>'manager',
                                 'width'=>'250px',
                                 'value'=>function ($model, $key, $index, $widget) {
-                                    return $model->count_rooms;
+                                    return $model->manager;
                                 },
                                 'filterType'=>GridView::FILTER_SELECT2,
-
-                                'filter'=>  $count_room,
+                                // 'filter'=>ArrayHelper::map(Rooms::find()->select('own_or_business')->orderBy('own_or_business')->asArray()->all(), 'own_or_business', 'own_or_business'),
+                                'filter'=>$manager,
                                 'filterWidgetOptions'=>[
                                     'pluginOptions'=>['allowClear'=>true],
                                 ],
-                                'filterInputOptions'=>['placeholder'=>'Комнаты'],
-                                'contentOptions' =>
-                                    ['style'=>'max-width: 150px;     max-height: 120px; overflow: auto; white-space: pre-wrap; /* css-3 */
- white-space: -moz-pre-wrap; 
- white-space: -pre-wrap; 
- white-space: -o-pre-wrap; 
- word-wrap: break-word; ']
-                                ,
+                                'filterInputOptions'=>['placeholder'=>'Менеджер']
                             ],
+
+//                            [
+//                                'attribute'=>'manager',
+//                                'width'=>'250px',
+//                                'value'=>function ($model, $key, $index, $widget) {
+//                                    return $model->manager;
+//                                },
+//                                'filterType'=>GridView::FILTER_SELECT2,
+//                                // 'filter'=>ArrayHelper::map(Rooms::find()->select('own_or_business')->orderBy('own_or_business')->asArray()->all(), 'own_or_business', 'own_or_business'),
+//                                'filter'=>$manager,
+//                                'filterWidgetOptions'=>[
+//                                    'pluginOptions'=>['allowClear'=>true],
+//                                ],
+//                                'filterInputOptions'=>['placeholder'=>'Менеджер']
+//                            ],
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -268,6 +254,21 @@ echo SideNav::widget([
                                     'pluginOptions'=>['allowClear'=>true],
                                 ],
                                 'filterInputOptions'=>['placeholder'=>'Сайт']
+                            ],
+
+                            [
+                                'attribute'=>'own_or_business',
+                                'width'=>'250px',
+                                'value'=>function ($model, $key, $index, $widget) {
+                                    return $model->own_or_business;
+                                },
+                                'filterType'=>GridView::FILTER_SELECT2,
+                                // 'filter'=>ArrayHelper::map(Rooms::find()->select('own_or_business')->orderBy('own_or_business')->asArray()->all(), 'own_or_business', 'own_or_business'),
+                                'filter'=>$own_or_business,
+                                'filterWidgetOptions'=>[
+                                    'pluginOptions'=>['allowClear'=>true],
+                                ],
+                                'filterInputOptions'=>['placeholder'=>'Any category']
                             ],
 
 
@@ -325,44 +326,6 @@ echo SideNav::widget([
 
 
 
-                            [
-                                'attribute'=>'district',
-                                'width'=>'250px',
-                                'value'=>function ($model, $key, $index, $widget) {
-                                    return $model->district;
-                                },
-                                'filterType'=>GridView::FILTER_SELECT2,
-
-                                'filter'=>  $district,
-                                'filterWidgetOptions'=>[
-                                    'pluginOptions'=>['allowClear'=>true],
-                                ],
-                                'filterInputOptions'=>['placeholder'=>'Город']
-                            ],
-
-
-                            [
-                                'attribute'=>'material',
-                                'width'=>'250px',
-                                'value'=>function ($model, $key, $index, $widget) {
-                                    return $model->material;
-                                },
-                                'filterType'=>GridView::FILTER_SELECT2,
-
-                                'filter'=>  $material,
-                                'filterWidgetOptions'=>[
-                                    'pluginOptions'=>['allowClear'=>true],
-                                ],
-                                'filterInputOptions'=>['placeholder'=>'Материал'],
-                                'contentOptions' =>
-                                    ['style'=>'max-width: 250px;     max-height: 120px; overflow: auto; white-space: pre-wrap; /* css-3 */
- white-space: -moz-pre-wrap; 
- white-space: -pre-wrap; 
- white-space: -o-pre-wrap; 
- word-wrap: break-word; ']
-                                ,
-
-                            ],
 
 
 
@@ -386,24 +349,28 @@ echo SideNav::widget([
                             ],
 
 
-                            [
-                                'attribute'=>'street2',
-                                'class' => 'kartik\grid\DataColumn',
-                                'noWrap' => false,
-
-                                'contentOptions' =>
-                                    ['style'=>'min-width: 120px;     max-height: 120px; overflow: auto; white-space: pre-wrap; /* css-3 */
- white-space: -moz-pre-wrap; 
- white-space: -pre-wrap; 
- white-space: -o-pre-wrap; 
- word-wrap: break-word; ']
-                                ,
 
 
-                            ],
-
-
-
+//                            [
+//                                'attribute'=>'price',
+//                                'class' => 'kartik\grid\DataColumn',
+//                                'noWrap' => false,
+//
+//                                'value'=>function ($model, $key, $index, $widget) {
+////                                    return $model->count_rooms;
+//                                    return $model->price .' /  '.$model->price_m;
+//                                },
+//
+//                                'contentOptions' =>
+//                                    ['style'=>'min-width: 140px;     max-height: 120px;  overflow: auto; white-space: pre-wrap; /* css-3 */
+// white-space: -moz-pre-wrap;
+// white-space: -pre-wrap;
+// white-space: -o-pre-wrap;
+// word-wrap: break-word; ']
+//                                ,
+//
+//
+//                            ],
 
 
 
@@ -415,6 +382,21 @@ echo SideNav::widget([
 
                                 'contentOptions' =>
                                     ['style'=>'min-width: 140px;     max-height: 120px;  overflow: auto; white-space: pre-wrap; /* css-3 */
+ white-space: -moz-pre-wrap; 
+ white-space: -pre-wrap; 
+ white-space: -o-pre-wrap; 
+ word-wrap: break-word; ']
+                                ,
+
+
+                            ],
+                            [
+                                'attribute'=>'price_m',
+                                'class' => 'kartik\grid\DataColumn',
+                                'noWrap' => false,
+
+                                'contentOptions' =>
+                                    ['style'=>'min-width: 90px;     max-height: 120px;  overflow: auto; white-space: pre-wrap; /* css-3 */
  white-space: -moz-pre-wrap; 
  white-space: -pre-wrap; 
  white-space: -o-pre-wrap; 
@@ -446,21 +428,7 @@ echo SideNav::widget([
 
 
 
-                            [
-                                'attribute'=>'price_m',
-                                'class' => 'kartik\grid\DataColumn',
-                                'noWrap' => false,
 
-                                'contentOptions' =>
-                                    ['style'=>'min-width: 90px;     max-height: 120px;  overflow: auto; white-space: pre-wrap; /* css-3 */
- white-space: -moz-pre-wrap; 
- white-space: -pre-wrap; 
- white-space: -o-pre-wrap; 
- word-wrap: break-word; ']
-                                ,
-
-
-                            ],
 
 
 
@@ -568,37 +536,9 @@ echo SideNav::widget([
 
 
 
-                            [
-                                'attribute'=>'own_or_business',
-                                'width'=>'250px',
-                                'value'=>function ($model, $key, $index, $widget) {
-                                    return $model->own_or_business;
-                                },
-                                'filterType'=>GridView::FILTER_SELECT2,
-                                // 'filter'=>ArrayHelper::map(Rooms::find()->select('own_or_business')->orderBy('own_or_business')->asArray()->all(), 'own_or_business', 'own_or_business'),
-                                'filter'=>$own_or_business,
-                                'filterWidgetOptions'=>[
-                                    'pluginOptions'=>['allowClear'=>true],
-                                ],
-                                'filterInputOptions'=>['placeholder'=>'Any category']
-                            ],
 
 
 
-                            [
-                                'attribute'=>'manager',
-                                'width'=>'250px',
-                                'value'=>function ($model, $key, $index, $widget) {
-                                    return $model->manager;
-                                },
-                                'filterType'=>GridView::FILTER_SELECT2,
-                                // 'filter'=>ArrayHelper::map(Rooms::find()->select('own_or_business')->orderBy('own_or_business')->asArray()->all(), 'own_or_business', 'own_or_business'),
-                                'filter'=>$manager,
-                                'filterWidgetOptions'=>[
-                                    'pluginOptions'=>['allowClear'=>true],
-                                ],
-                                'filterInputOptions'=>['placeholder'=>'Менеджер']
-                            ],
 
 
 
@@ -615,6 +555,139 @@ echo SideNav::widget([
  white-space: -o-pre-wrap; 
  word-wrap: break-word; ']
                                 ,
+                            ],
+
+
+
+
+                            [
+                                'attribute'=>'count_rooms',
+                                'width'=>'250px',
+                                'value'=>function ($model, $key, $index, $widget) {
+                                    return $model->count_rooms;
+                                },
+                                'filterType'=>GridView::FILTER_SELECT2,
+
+                                'filter'=>  $count_room,
+                                'filterWidgetOptions'=>[
+                                    'pluginOptions'=>['allowClear'=>true],
+                                ],
+                                'filterInputOptions'=>['placeholder'=>'Комнаты'],
+                                'contentOptions' =>
+                                    ['style'=>'max-width: 150px;     max-height: 120px; overflow: auto; white-space: pre-wrap; /* css-3 */
+ white-space: -moz-pre-wrap; 
+ white-space: -pre-wrap; 
+ white-space: -o-pre-wrap; 
+ word-wrap: break-word; ']
+                                ,
+                            ],
+
+
+
+
+
+
+                            [
+                                'attribute'=>'street2',
+                                'class' => 'kartik\grid\DataColumn',
+                                'noWrap' => false,
+
+                                'contentOptions' =>
+                                    ['style'=>'min-width: 120px;     max-height: 120px; overflow: auto; white-space: pre-wrap; /* css-3 */
+ white-space: -moz-pre-wrap; 
+ white-space: -pre-wrap; 
+ white-space: -o-pre-wrap; 
+ word-wrap: break-word; ']
+                                ,
+
+
+                            ],
+
+
+
+
+
+
+
+
+                            [
+                                'attribute'=>'district',
+                                'width'=>'250px',
+                                'value'=>function ($model, $key, $index, $widget) {
+                                    return $model->district;
+                                },
+                                'filterType'=>GridView::FILTER_SELECT2,
+
+                                'filter'=>  $district,
+                                'filterWidgetOptions'=>[
+                                    'pluginOptions'=>['allowClear'=>true],
+                                ],
+                                'filterInputOptions'=>['placeholder'=>'Город']
+                            ],
+
+
+                            [
+                                'attribute'=>'material',
+                                'width'=>'250px',
+                                'value'=>function ($model, $key, $index, $widget) {
+                                    return $model->material;
+                                },
+                                'filterType'=>GridView::FILTER_SELECT2,
+
+                                'filter'=>  $material,
+                                'filterWidgetOptions'=>[
+                                    'pluginOptions'=>['allowClear'=>true],
+                                ],
+                                'filterInputOptions'=>['placeholder'=>'Материал'],
+                                'contentOptions' =>
+                                    ['style'=>'max-width: 250px;     max-height: 120px; overflow: auto; white-space: pre-wrap; /* css-3 */
+ white-space: -moz-pre-wrap; 
+ white-space: -pre-wrap; 
+ white-space: -o-pre-wrap; 
+ word-wrap: break-word; ']
+                                ,
+
+                            ],
+
+
+
+
+
+
+
+                            [
+                                'attribute'=>'site_id',
+                                'class' => 'kartik\grid\DataColumn',
+                                'noWrap' => false,
+                                'contentOptions' =>
+                                    ['style'=>'max-width: 50px;     max-height: 120px; width:50px; overflow: auto; white-space: pre-wrap; /* css-3 */
+ white-space: -moz-pre-wrap;
+ white-space: -pre-wrap; 
+ white-space: -o-pre-wrap; 
+ word-wrap: break-word; ']
+                                ,
+                            ],
+
+
+                            [
+                                'attribute'=> 'date',
+                                'class' => 'kartik\grid\DataColumn',
+                                'noWrap' => false,
+
+                                'value'=>function ($model, $key, $index, $widget) {
+                                    //return  str_replace(' ', PHP_EOL, $model->date);
+                                    return $model->date;
+                                },
+
+                                'contentOptions' =>
+                                    ['style'=>'max-width: 350px;     max-height: 120px; overflow: auto; white-space: pre-wrap; /* css-3 */
+ white-space: -moz-pre-wrap; 
+ white-space: -pre-wrap; 
+ white-space: -o-pre-wrap; 
+ word-wrap: break-word; ']
+                                ,
+
+
                             ],
 
 
