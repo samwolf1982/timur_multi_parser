@@ -168,27 +168,15 @@ class ParserController extends \yii\console\Controller
         );
 
 
-
-
-
-
-
-
-
-
-
-
         echo $url.PHP_EOL;
      echo PHP_EOL;
     }
 
-
-
+    
     // может не нужно  нужно нужно федя
     //     code parse colected urls
     public function actionPars()
     {
-
 
         // если буду проблемы с цикличностю тогда смотреть в
         // найти и разкоментрировать ст298    //$welldone = Yii::$app->session->get('welldone', 0); ++$welldone;
