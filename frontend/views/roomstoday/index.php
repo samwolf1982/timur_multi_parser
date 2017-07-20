@@ -28,12 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-
-
-
-
-
-
 <div class="rooms-index">
 
 
@@ -667,8 +661,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     </section>
-
-
 
 
 <!--    --><?//= GridView::widget([

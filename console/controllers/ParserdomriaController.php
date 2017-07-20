@@ -71,7 +71,7 @@ class ParserdomriaController extends \yii\console\Controller
         if ($domria_page === false) {
             // срок действия истек или ключ не найден в кэше
             // $cache->delete('datapage');
-            $cache->set('domria_page', 3, 60 * 30);
+            $cache->set('domria_page', 10, 60 * 30);
             $domria_page = $cache->get('domria_page');
         }
         if (--$domria_page <= 0) {
@@ -279,8 +279,9 @@ class ParserdomriaController extends \yii\console\Controller
                     'created_at'=>$created_at  ,
                 ];
 
-                $this->  write_to_db($arr) ;
+               $retid=  $this->  write_to_db($arr) ;
                 $arr_info['catch'][]=$url_full;
+                $arr_info['idlist'][]= $retid;
                 //   echo json_encode(['stop_timer' => false, 'info'=> $arr, 'present_url'=>$url_full, 'colected' => count(Yii::$app->session-> get('welldone', 0))], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
 
 
@@ -310,8 +311,9 @@ class ParserdomriaController extends \yii\console\Controller
             //Yii::$app->session->set('welldone_domria', $wd);
 
 
-            \Yii::info("own: ", $arr_info);
-            echo json_encode([ 'colected' => $total_in_page,'stop_timer' => false,
+           // \Yii::info("own: ", $arr_info);
+            //yii::error(var_dump(['dfdsafdsa']));
+            echo json_encode([ 'colected2' => $total_in_page,'stop_timer' => false,'idlist'=> $arr_info['idlist'],
                 //'catch'=> $catch, 'present'=>$present,
             ], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
             die();
@@ -346,6 +348,7 @@ class ParserdomriaController extends \yii\console\Controller
 //    }
 //);
 
+//        Yii::error(var_dump($responce_domria));
 
         echo  var_dump($responce_domria );
 
@@ -410,6 +413,7 @@ class ParserdomriaController extends \yii\console\Controller
     }
 
     public function write_to_db($arr){
+        $returnid=-1;
         $contact = new Rooms();
         $contact->price = $arr['price'];
         $contact-> own_or_business =$arr['own_biss'];
@@ -452,7 +456,7 @@ class ParserdomriaController extends \yii\console\Controller
         if ($contact->validate()) {
 
             $contact->save();
-
+$returnid=$contact->id;
             //$contact->id;
 
             $latitude  =$arr['latitude'];
@@ -491,5 +495,7 @@ class ParserdomriaController extends \yii\console\Controller
         }
 
         // print_r($contact->errors);
+    return $returnid;
     }
+
 }
