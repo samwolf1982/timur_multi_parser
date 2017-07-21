@@ -147,7 +147,8 @@ return [
     'modules' => [
         'user' => [
             'class' => 'budyaga\users\Module',
-            'userPhotoUrl' => 'http://example.com/uploads/user/photo',
+//            'userPhotoUrl' => 'http://http://localhost18/uploads/user/photo',
+            'userPhotoUrl' => 'http://localhost18/uploads/user/photo',
             'userPhotoPath' => '@frontend/web/uploads/user/photo'
         ],
         'gridview' => ['class' => 'kartik\grid\Module']

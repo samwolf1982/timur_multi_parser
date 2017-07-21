@@ -5,6 +5,16 @@ use yii\helpers\Html;
 /* @var $content string */
 ?>
 
+
+<?php
+
+$model = (new \yii\db\Query())
+    ->select(['photo'])
+    ->from('user')
+    ->where(['id'=>Yii::$app->user->id])->one();
+$foto=  ($model['photo']) ? $model['photo'] : $assets->baseUrl . '/img/' . $model->getDefaultPhoto() . '.png';
+?>
+
 <header class="main-header">
 
     <?= Html::a('<span class="logo-mini">APP</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
@@ -229,13 +239,13 @@ use yii\helpers\Html;
 
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="http://lorempixel.com/200/200/cats/" class="user-image" alt="User Image"/>
+                        <img src="<?= $foto ?>" class="user-image" alt="User Image"/>
                         <span class="hidden-xs"><?=Yii::$app->user->identity->username?> </span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="http://lorempixel.com/200/200/cats/" class="img-circle"
+                            <img src="<?= $foto ?>" class="img-circle"
                                  alt="User Image"/>
 
                             <p>

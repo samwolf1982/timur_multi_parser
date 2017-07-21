@@ -5,7 +5,18 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="http://lorempixel.com/200/200/cats/" class="img-circle" alt="User Image"/>
+
+
+<?php
+$us=frontend\models\User::find()->where(['id'=>Yii::$app->user->id]);
+$model = (new \yii\db\Query())
+    ->select(['photo'])
+    ->from('user')
+    ->where(['id'=>Yii::$app->user->id])->one();
+              $foto=  ($model['photo']) ? $model['photo'] : $assets->baseUrl . '/img/' . $model->getDefaultPhoto() . '.png';
+      ?>
+
+                <img src="<?=$foto ?>" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
                 <p> <?=Yii::$app->user->identity->username?>  </p>
