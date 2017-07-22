@@ -64,6 +64,7 @@ class RoomstodaySearch extends Roomstoday
         $max_date  = Maxdate::find()->andWhere(['site'=>'OLX'])->max('dt');
 
        $datez = new \DateTime( $max_date);
+
      $new_date_format  = $datez->format('Y-m-d H:i:s');
          
      $max_id  = Maxdate::find()->select('max_id')->where(['dt'=>$max_date])->one();
