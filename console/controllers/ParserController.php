@@ -121,6 +121,153 @@ class ParserController extends \yii\console\Controller
             $datapage = $cache->get('datapage');
             if ($datapage === false) {
                 // срок действия истек или ключ не найден в кэше
+//                $cache->set('datapage', 0, 60*30);
+                $cache->set('datapage', 0);
+                $datapage = $cache->get('datapage');
+            }
+
+
+
+            if (is_array($datapage)) {
+                // $all_urls = array_merge($all_urls, $urls_page);
+                $datapage = array_merge($datapage,
+                    $datapg); }
+            else {
+                $datapage = $datapg; }
+
+
+
+//            $cache->set('datapage', $datapage, 60*30);
+            $cache->set('datapage', $datapage);
+
+//            $all_urls = Yii::$app->session->get('datapage');
+            $all_urls =  $datapage;
+//            $npage = Yii::$app->session->get('count_url_page_index');
+            $npage = 0;
+
+            $res = array(
+
+
+                'success' => true,
+                'debug' => ['url'=>$path_site,'find_urls'=>$all_tmp_urls,'catch_url'=>$all_urls],
+                'npage' => $npage,
+                'stop_timer' => $gate,
+                'colected' => count($all_urls),
+                'countobj' => count($all_urls),
+            );
+
+            $datapage = $cache->get('datapage');
+            var_dump($datapage);
+//            echo json_encode($res, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT |
+//                JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
+            //die();
+        }
+        );
+
+
+        echo $url.PHP_EOL;
+        echo PHP_EOL;
+    }
+
+
+
+    // сбор урлов олх по 38 штук
+    /**
+     * @param $olx_count_page  1 2 3 4 5              * 38        первый сбор всегда           1 1
+     * @param bool $clearcash    первый сбор всегда +           1 1
+     */
+    public function actionColecturlsolxparamfull($olx_count_page, $clearcash=false){
+        // Хранить данные в кэше не более 30 мин
+//
+        $url= "https://www.olx.ua/nedvizhimost/prodazha-kvartir/od/?page={$olx_count_page}";
+        if ($clearcash){
+            $cache=   \Yii::$app->cache;
+            $datapage = $cache->get('datapage');
+            if ($datapage !== false) {
+                // срок действия истек или ключ не найден в кэше
+                $cache->delete('datapage');
+
+            }
+        }
+
+        \phpQuery::ajaxAllowHost('www.olx.ua');
+        $path_site = $url;
+        \phpQuery::get($path_site, function ($do)use ($path_site)
+        {
+
+            $gate = false; // если true значить есть в базе n timer true
+            $document = \phpQuery::newDocument($do);
+            // table main  сбор урлов и запись в сесию
+            $bread1 = '#offers_table tr td[valign^="top"] h3 a[href^=https://www.olx.ua/obyavlenie]';
+            $bread1a = $document->find($bread1);
+            $tmp_urls = [];
+            $all_tmp_urls = [];
+            // все 30 урлов для сверки по индексу с ценой
+            foreach ($bread1a as $key => $value) {
+
+
+                $t = pq($value)->attr('href');
+                $t_full=$t;
+                $uap=parse_url($t);
+                $t=$uap['scheme'].'://'.$uap['host'].$uap['path'];
+                $all_tmp_urls[] = $t;
+                // запись в бд для статистики
+
+                $count = Olxstatistic::find()->select(['id'])->where(['fullurl' => $t_full])->limit(1)->count();
+
+                if ($count == 0) {
+                    $contact = new Olxstatistic();
+
+                    $contact->fullurl = $t_full;
+                    $contact-> shorturl = $t;
+                    $contact->save();
+
+                }
+                // конец запись в бд для статистики
+
+
+
+            }
+
+
+            $urls_page = $tmp_urls; ///////////////////    price
+            $bread1 = '#offers_table .price';
+            $bread1a = $document->find($bread1);
+
+            $all_price=array();
+
+            foreach ($bread1a as $key => $value) {
+                $temp = pq($value)->text();
+                $temp = trim($temp);
+                $temp = preg_replace('/[^0-9]+/','', $temp);
+
+                $all_price[]=$temp;
+                // $price_page[] = $temp;
+
+            }
+            $datapg=array();
+            for ($j = 0; $j < count($all_tmp_urls); $j++) {
+                $u = $all_tmp_urls[$j];
+                //$count = Rooms::find()->where(['url' => $u])->count();
+                $count =  Rooms::find()->select(['id'])->where(['url' => $u])->limit(1)->count();
+
+                if ($count > 0)continue;
+
+                $tmp = ['price' => $all_price[$j], 'url' => $all_tmp_urls[$j], ];
+                $datapg[] = $tmp; }
+
+            ///////////////////////////////////////////
+
+
+            // дозапись в сесию( пока что такой вариант)
+//            $all_urls = Yii::$app->session->get('all_urls', 0);
+//            $datapage = Yii::$app->session->get('datapage', 0);
+
+            // $cache->set('olx_count_page', $olx_count_page, 60*20);
+            $cache=   \Yii::$app->cache;
+            $datapage = $cache->get('datapage');
+            if ($datapage === false) {
+                // срок действия истек или ключ не найден в кэше
                 $cache->set('datapage', 0, 60*30);
                 $datapage = $cache->get('datapage');
             }
@@ -136,7 +283,7 @@ class ParserController extends \yii\console\Controller
 
 
 //       Yii::$app->session->set('datapage', $datapage);
-            $cache->set('datapage', $datapage, 60*30);
+            $cache->set('datapage', $datapage);
 
 //            $all_urls = Yii::$app->session->get('datapage');
             $all_urls =  $datapage;
