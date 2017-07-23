@@ -76,7 +76,7 @@ class ParseolxController extends Controller
 //         ];
 }
 
-    public function actionIndex()
+    public function actionPars()
     {
         $pc=new ParserController(5,5);
         //$pc->actionColecturlsolxparam(500,1);
@@ -85,6 +85,23 @@ class ParseolxController extends Controller
         echo 'xxxx';
 
     }
+
+    public function actionColecturlsolx($page,$clear)
+    {
+        $pc=new ParserController(5,5);
+        if ($clear=='false'){
+            $pc->actionColecturlsolxparam($page);
+        }else{
+        $pc->actionColecturlsolxparam($page,$clear);
+    }
+
+        //$pc->actionPars();
+
+        echo 'xxxx';
+
+    }
+
+
 
 
 
