@@ -144,6 +144,8 @@ return [
     ],
 
 
+
+
     'modules' => [
         'user' => [
             'class' => 'budyaga\users\Module',
