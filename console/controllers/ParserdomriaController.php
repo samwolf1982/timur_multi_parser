@@ -84,7 +84,7 @@ class ParserdomriaController extends \yii\console\Controller
 
 
 
-        $limit=10;// квартир
+        $limit=30;// квартир
         $page=$domria_page; // cтраница от 10 - 1
         $path="https://dom.ria.com/searchEngine/?page={$page}&new_search=1&limit={$limit}&from_realty_id=&to_realty_id=&sort=0&category=1&realty_type=0&operation_type=1&state_id=12&city_id%5B20%5D=12&characteristic%5B209%5D%5Bfrom%5D=&characteristic%5B209%5D%5Bto%5D=&characteristic%5B214%5D%5Bfrom%5D=&characteristic%5B214%5D%5Bto%5D=&characteristic%5B216%5D%5Bfrom%5D=&characteristic%5B216%5D%5Bto%5D=&characteristic%5B218%5D%5Bfrom%5D=&characteristic%5B218%5D%5Bto%5D=&characteristic%5B227%5D%5Bfrom%5D=&characteristic%5B227%5D%5Bto%5D=&characteristic%5B228%5D%5Bfrom%5D=&characteristic%5B228%5D%5Bto%5D=&characteristic%5B234%5D%5Bfrom%5D=&characteristic%5B234%5D%5Bto%5D=&characteristic%5B242%5D=239&characteristic%5B265%5D=0&realty_id_only=&date_from=&date_to=&with_phone=&exclude_my=&new_housing_only=&banks_only=&email=&period=0";
         $responce_domria = @file_get_contents($path,true);
